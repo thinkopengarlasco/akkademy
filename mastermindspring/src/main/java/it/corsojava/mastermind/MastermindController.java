@@ -4,12 +4,14 @@ import it.corsojava.mastermind.controllers.UserController;
 import it.corsojava.mastermind.dto.UserDTO;
 import it.corsojava.mastermind.javaBean.UserBean;
 import it.corsojava.mastermind.repository.Dao;
+import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,20 +20,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@RestController
+@Controller
 public class MastermindController {
 
     private UserController userController;
     private static final long serialVersionUID=1L;
 
-    // @RequestMapping(value = "*", method = RequestMethod.GET)
-            //response.sendRedirect("Ciclo");
-    //public String getMessage() {
-        //return "ciao";
-    //}
-    @RequestMapping(value = "*", method = RequestMethod.GET)
-    public void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp");
+     @RequestMapping("home")
+    public String getMessage() {
+                return "index";
     }
 
     @GetMapping
