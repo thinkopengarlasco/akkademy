@@ -6,6 +6,7 @@ import it.corsojava.mastermind.javaBean.UserBean;
 import it.corsojava.mastermind.repository.Dao;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MastermindController {
@@ -49,6 +52,15 @@ public class MastermindController {
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             doGet(request,response);
         }
+
+    @GetMapping("/showViewPage")
+    public String passParametersWithModel(Model model) {
+        Map<String, String> map = new HashMap<>();
+        map.put("spring", "mvc");
+        model.addAttribute("message", "Baeldung");
+        model.mergeAttributes(map);
+        return "viewPage";
+    }
 
         private void setUsername(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException
         {
