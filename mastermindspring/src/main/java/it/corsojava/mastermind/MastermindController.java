@@ -24,9 +24,14 @@ public class MastermindController {
     private UserController userController;
     private static final long serialVersionUID=1L;
 
+    // @RequestMapping(value = "*", method = RequestMethod.GET)
+            //response.sendRedirect("Ciclo");
+    //public String getMessage() {
+        //return "ciao";
+    //}
     @RequestMapping(value = "*", method = RequestMethod.GET)
-    public String getMessage() {
-        return "ciao";
+    public void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("index.jsp");
     }
 
     @GetMapping
