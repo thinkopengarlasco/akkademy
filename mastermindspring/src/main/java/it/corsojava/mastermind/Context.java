@@ -13,7 +13,7 @@ public class Context {
     private static Context istanzaContesto;
     private Controller controller;
 
-
+ //add metodo
     public static Context getInstance() {
         if (istanzaContesto == null) {
             istanzaContesto = new Context();
