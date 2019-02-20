@@ -3,6 +3,7 @@ package it.corsojava.mastermind;
 import it.corsojava.mastermind.controllers.UserController;
 import it.corsojava.mastermind.dto.UserDTO;
 import it.corsojava.mastermind.javaBean.UserBean;
+import it.corsojava.mastermind.models.UserModel;
 import it.corsojava.mastermind.repository.Dao;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
@@ -45,7 +47,7 @@ public class MastermindController {
             }
             //se utente vuole giocare
         else {
-            setUsername(request, response);
+            //setUsername(request, response);
             }
         }
 
@@ -61,8 +63,16 @@ public class MastermindController {
         model.mergeAttributes(map);
         return "viewPage";
     }
-
-        private void setUsername(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException
+        @RequestMapping("game")
+        private ModelAndView setUsername(UserModel userModel)
+        {
+           ModelAndView model= new ModelAndView();
+           model.addObject("obj",userModel);
+           model.setViewName("game");
+           return model;
+        }
+/*
+ private void setUsername(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException
         {
             String username=request.getParameter("username");
             request.getSession().setAttribute("username", username);
@@ -73,7 +83,7 @@ public class MastermindController {
                 // response.sendRedirect("jsp/paginaErrore.jsp");
             }
         }
-
+ */
         private UserBean calcolaTabellaUtente() {
             UserBean userBean = new UserBean();
             userBean.setUtenti ((ArrayList<UserDTO>) userController.getUsers());

@@ -15,7 +15,7 @@
     <button type="submit" name="invia">Invia</button>
 </form>--%>
 
-<form action="<%=request.getContextPath()+"/login" %>" method="get">
+<form action="<%=request.getContextPath()+"game" %>" method="get">
     <label for="username">Username: </label>
     <input type="text" name="username" value="">
     <label for="password">Password: </label>
