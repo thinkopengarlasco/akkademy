@@ -29,7 +29,7 @@ public class MastermindController {
     private UserController userController;
     private static final long serialVersionUID=1L;
 
-     @RequestMapping("home")
+     @RequestMapping("/")
     public String getMessage() {
                 return "index";
     }
